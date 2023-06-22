@@ -1,6 +1,6 @@
 import cors from "cors";
 import dotenv from "dotenv";
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import admin from "firebase-admin";
 import helmet from "helmet";
 import { ErrorException } from "../error-handler/error-exception";
@@ -23,6 +23,10 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(errorHandler);
+
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+  res.status(200).json({ data: "Hello" });
+});
 
 app.post("/send-group-message", async (req: Request, res: Response) => {
   const { title, body, topic } = req.body;
