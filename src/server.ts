@@ -49,6 +49,6 @@ app.post("/send-group-message", async (req: Request, res: Response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Application started on port 3000!");
+app.listen(process.env.PORT, () => {
+  console.log(`Application started on port ${process.env.PORT}!`);
 });
